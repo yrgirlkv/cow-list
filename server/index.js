@@ -17,9 +17,8 @@ app.get('/api/cows', (req, res) => {
 
 app.post('/api/cows', (req, res) => {
   //modify memory
-  console.log(req.body.payload);
   let payload = JSON.parse(req.body.payload);
-  console.log(typeof req.body.payload);
+  console.log(payload);
   res.send(req.body.payload);
 })
 
