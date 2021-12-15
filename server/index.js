@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const mysql = require('mysql2');
 
 const PORT = 3000;
 const app = express();
@@ -7,19 +8,40 @@ const app = express();
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 
+const cowlink = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  database: 'cow_data'
+})
+
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
 })
 
 app.get('/api/cows', (req, res) => {
-  res.send('api request to cows');
+  //send database
+  cowlink.execute(
+    'select * from ?',
+    ['cows'],
+    (err, results, fields) => {
+      console.log(results);
+      res.send('api request to cows executed');
+    }
+  )
 })
 
 app.post('/api/cows', (req, res) => {
   //modify memory
   let payload = JSON.parse(req.body.payload);
   console.log(payload);
-  res.send(req.body.payload);
+  cowlink.execute(
+    'insert into `cows` (name, description) values (?, ?)',
+    [payload.name, payload.description],
+    (err, results, fields) => {
+      res.send(`successfully posted ${payload}`);
+    }
+  )
+
 })
 
 app.listen(PORT, () => {
