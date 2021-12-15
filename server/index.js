@@ -21,11 +21,10 @@ app.get('/', (req, res) => {
 app.get('/api/cows', (req, res) => {
   //send database
   cowlink.execute(
-    'select * from ?',
-    ['cows'],
+    'select * from `cows`',
     (err, results, fields) => {
       console.log(results);
-      res.send('api request to cows executed');
+      res.send(results);
     }
   )
 })
@@ -38,7 +37,7 @@ app.post('/api/cows', (req, res) => {
     'insert into `cows` (name, description) values (?, ?)',
     [payload.name, payload.description],
     (err, results, fields) => {
-      res.send(`successfully posted ${payload}`);
+      res.send(`successfully POSTed ${JSON.stringify(payload)} to /api/cows`);
     }
   )
 
