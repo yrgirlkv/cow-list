@@ -9,7 +9,7 @@ class CowList extends React.Component {
   render () {
     return (
       <div>
-        cow list goes here
+        {this.props.cows.map (cow => <div key = {cow.name}>{cow.name}</div>)}
       </div>
     )
   }

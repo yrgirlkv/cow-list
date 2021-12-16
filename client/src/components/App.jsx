@@ -9,7 +9,7 @@ class App extends React.Component {
 
     this.state = {
       url: 'http://localhost:3000/api/cows',
-      cows: ''
+      cows: []
     };
   }
 
@@ -27,6 +27,7 @@ class App extends React.Component {
       console.log(res);
       this.setState({cows: res});
     })
+
     .catch(err => console.error(err));
   }
 
@@ -37,7 +38,7 @@ class App extends React.Component {
       <div>
         <CowDetails />
         <EntryBox />
-        <CowList />
+        <CowList cows = {this.state.cows}/>
       </div>
     );
   }
