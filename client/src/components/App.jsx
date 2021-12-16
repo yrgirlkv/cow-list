@@ -18,15 +18,15 @@ class App extends React.Component {
   }
 
   fetchCows = () => {
-    fetch('http://localhost:3000/api/cows', {
+    fetch(this.state.url, {
       method: 'GET'
     })
     .then(res => res.json())
     .then(res => {
       console.log('receiving and logging cows...');
       console.log(res);
+      this.setState({cows: res});
     })
-    .then(res => this.setState({cows: res}))
     .catch(err => console.error(err));
   }
 
