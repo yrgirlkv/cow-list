@@ -23,7 +23,7 @@ app.get('/api/cows', (req, res) => {
   cowlink.execute(
     'select * from `cows`',
     (err, results, fields) => {
-      console.log(results);
+      console.log('sending cows...');
       res.send(results);
     }
   )
