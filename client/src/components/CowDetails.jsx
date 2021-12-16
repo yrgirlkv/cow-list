@@ -7,11 +7,14 @@ class CowDetails extends React.Component {
   }
 
   render () {
-    return (
-      <div>
-        cow details are displayed here
-      </div>
-    )
+    return
+      (
+        <div>
+          {this.props.cow.name}
+          <br></br>
+          {this.props.cow.description}
+        </div>
+      )
   }
 }
 

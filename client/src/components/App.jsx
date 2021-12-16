@@ -14,7 +14,7 @@ class App extends React.Component {
       currentCow: {}
     };
 
-    this.clickHandler = this.clickHandler.bind(this);
+    this.handleCowButton = this.handleCowButton.bind(this);
   }
 
   componentDidMount () {
@@ -34,21 +34,15 @@ class App extends React.Component {
     .catch(err => console.error(err));
   }
 
-  setCurrentCow(givenCow) {
+
+  handleCowButton (e) {
+    e.preventDefault();
+    let clickedCow = e.target.className;
     for (let stateCow of this.state.cows) {
-      if (givenCow === stateCow.name) {
-        this.setState ({
-          currentCow: stateCow
-        })
+      if (clickedCow === stateCow.name) {
+        this.setState ({currentCow: stateCow})
       }
     }
-  }
-
-  clickHandler (e) {
-    e.preventDefault();
-    console.log('clicked');
-    let clickedCow = e.target.className;
-    this.setCurrentCow(clickedCow);
   }
 
   render () {
@@ -59,7 +53,7 @@ class App extends React.Component {
         <h1>enter new cow</h1>
         <EntryBox />
         <h1>list of cows</h1>
-        <CowList cows = {this.state.cows} clickHandler = {this.clickHandler}/>
+        <CowList cows = {this.state.cows} clickHandler = {this.handleCowButton}/>
       </div>
     );
   }
