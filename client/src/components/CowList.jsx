@@ -9,7 +9,7 @@ class CowList extends React.Component {
   render () {
     return (
       <div>
-        cowList goes here
+        cow list goes here
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import CowList from './CowList.jsx'
 import EntryBox from './EntryBox.jsx'
+import CowDetails from './CowDetails.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends React.Component {
     return (
       //jsx goes in here
       <div>
-        {/* //hypothetical display component */}
+        <CowDetails />
         <EntryBox />
         <CowList />
       </div>
