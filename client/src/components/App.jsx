@@ -21,6 +21,7 @@ class App extends React.Component {
     fetch('http://localhost:3000/api/cows', {
       method: 'GET'
     })
+    .then(res => res.json())
     .then(res => {
       console.log('receiving and logging cows...');
       console.log(res);
