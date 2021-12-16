@@ -9,8 +9,12 @@ class App extends React.Component {
 
     this.state = {
       url: 'http://localhost:3000/api/cows',
-      cows: []
+      cows: [],
+      newCow: {},
+      currentCow: {}
     };
+
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   componentDidMount () {
@@ -27,18 +31,35 @@ class App extends React.Component {
       console.log(res);
       this.setState({cows: res});
     })
-
     .catch(err => console.error(err));
   }
 
+  setCurrentCow(givenCow) {
+    for (let stateCow of this.state.cows) {
+      if (givenCow === stateCow.name) {
+        this.setState ({
+          currentCow: stateCow
+        })
+      }
+    }
+  }
+
+  clickHandler (e) {
+    e.preventDefault();
+    console.log('clicked');
+    let clickedCow = e.target.className;
+    this.setCurrentCow(clickedCow);
+  }
 
   render () {
     return (
       //jsx goes in here
       <div>
-        <CowDetails />
+        <CowDetails cow = {this.state.currentCow} setCurrentCow = {this.setCurrentCow}/>
+        <h1>enter new cow</h1>
         <EntryBox />
-        <CowList cows = {this.state.cows}/>
+        <h1>list of cows</h1>
+        <CowList cows = {this.state.cows} clickHandler = {this.clickHandler}/>
       </div>
     );
   }

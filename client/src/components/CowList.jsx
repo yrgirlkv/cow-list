@@ -9,7 +9,15 @@ class CowList extends React.Component {
   render () {
     return (
       <div>
-        {this.props.cows.map (cow => <div key = {cow.name}>{cow.name}</div>)}
+        <form>
+          {this.props.cows.map (cow => {
+            return (
+              <div key = {cow.name}>{cow.name}
+              <button className={cow.name} onClick = {this.props.clickHandler}>Display</button>
+              </div>
+            )}
+          )}
+        </form>
       </div>
     )
   }
