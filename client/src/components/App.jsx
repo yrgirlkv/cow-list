@@ -18,6 +18,7 @@ class App extends React.Component {
     this.handleCowButton = this.handleCowButton.bind(this);
     this.handleCowNameInput = this.handleCowNameInput.bind(this);
     this.handleCowDescInput = this.handleCowDescInput.bind(this);
+    this.handleCowSubmission = this.handleCowSubmission.bind(this);
   }
 
   componentDidMount () {
@@ -61,12 +62,12 @@ class App extends React.Component {
 
   handleCowSubmission (e) {
     e.preventDefault();
-    console.log('firing submit');
     var newCow = {name: this.state.newCowName, description: this.state.newCowDesc}
-    console.log(newCow);
+    console.log(`submitting ${JSON.stringify({payload: newCow})}`);
     fetch(this.state.url, {
       method: 'POST',
-      body: JSON.stringify(newCow)
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({payload: newCow})
     })
     .then(res => {
       console.log('posted cows');
@@ -81,7 +82,7 @@ class App extends React.Component {
       <div>
         <CowDetails cow = {this.state.currentCow}/>
         <h1>enter new cow</h1>
-        <EntryBox handleCowDescInput={this.handleCowDescInput} handleCowNameInput = {this.handleCowNameInput}/>
+        <EntryBox handleCowDescInput={this.handleCowDescInput} handleCowNameInput = {this.handleCowNameInput} handleCowSubmission = {this.handleCowSubmission}/>
         <h1>list of cows</h1>
         <CowList cows = {this.state.cows} clickHandler = {this.handleCowButton}/>
       </div>
