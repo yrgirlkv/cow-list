@@ -8,7 +8,7 @@ class CowDetails extends React.Component {
 
   render () {return (
     <div>
-      {this.props.cow.name}
+      <h1>{this.props.cow.name}</h1>
       <br></br>
       {this.props.cow.description}
     </div>
