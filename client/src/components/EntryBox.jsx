@@ -6,17 +6,13 @@ class EntryBox extends React.Component {
     super(props);
   }
 
-  handleCowSubmission () {
-    event.preventDefault();
-  }
-
-  handleCowInput () {}
-
   render () {
     return (
       <div>
-        <form onSubmit = {this.handleCowSubmission}>
-          <textarea onChange = {this.handleCowInput}></textarea>
+        <form onSubmit = {this.props.handleCowSubmission}>
+          <input type="text" onChange = {this.props.handleCowNameInput} placeholder="Name"></input>
+          <br></br>
+          <textarea onChange = {this.props.handleCowDescInput} placeholder="Description"></textarea>
           <button type = "submit">Submit new cow</button>
         </form>>
       </div>

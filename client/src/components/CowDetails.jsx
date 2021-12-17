@@ -6,16 +6,13 @@ class CowDetails extends React.Component {
     super(props);
   }
 
-  render () {
-    return
-      (
-        <div>
-          {this.props.cow.name}
-          <br></br>
-          {this.props.cow.description}
-        </div>
-      )
-  }
+  render () {return (
+    <div>
+      {this.props.cow.name}
+      <br></br>
+      {this.props.cow.description}
+    </div>
+  )}
 }
 
 export default CowDetails;
